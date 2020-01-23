@@ -4,18 +4,26 @@
 
 <script>
   import { KeyManager } from './KeyManager';
-
+  import { parse } from './parse';
   export default {
     data () {
       return {
-        message: '',
+        words: [''],
         keyManager: new KeyManager()
       };
+    },
+    computed: {
+      message () {
+        return this.words.join(' ');
+      },
+      parsed () {
+        return parse(this.words);
+      }
     },
     mounted () {
       document.addEventListener('keydown', (e) => {
         this.keyManager.handleKeyDown(e.key);
-        this.message = String(this.keyManager.words);
+        this.words = [...this.keyManager.words];
       });
     }
   };

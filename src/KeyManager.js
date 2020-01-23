@@ -6,6 +6,7 @@ export class KeyManager {
   handleKeyDown (key) {
     if (key.length === 1) {
       this.pushToLastWord(key);
+      return;
     }
     this.words.push('');
   }
@@ -20,7 +21,6 @@ export class KeyManager {
 
   set lastWord (word) {
     this.words[this.words.length - 1] = word;
-
   }
 }
 
